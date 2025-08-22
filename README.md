@@ -27,7 +27,7 @@ An interactive web-based tool to visualize popular sorting algorithms in action.
 
 ## 📦 Deployment
 
-Live demo hosted on [GitHub Pages](https://your-username.github.io/sorting-visualizer/)  
+Live demo hosted on [GitHub Pages](https://isratazmeen.github.io/sorting-visualizer/)  
 To run locally:
 ```bash
 git clone https://github.com/your-username/sorting-visualizer.git
