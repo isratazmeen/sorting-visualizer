@@ -1,0 +1,308 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #1E1E2F;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #222;
+  color: white;
+}
+
+#themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+#themeIcon {
+  transition: transform 0.3s ease;
+}
+
+body.dark #themeIcon {
+  transform: rotate(180deg);
+}
+
+h1 {
+  animation: fadeSlide 0.8s ease-out forwards;
+  text-align: center;
+  margin-top: 1rem;
+}
+h2 {
+  text-shadow: 0 0 5px #4CAF50;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#speed {
+  width: 150px;
+}
+
+#speedValue {
+  margin-left: 8px;
+  font-style: italic;
+  color: #555;
+}
+
+label {
+  font-weight: bold;
+}
+
+#statusMessage {
+  margin-left: 1rem;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+body.dark #statusMessage {
+  color: #90ee90;
+}
+
+#statusMessage.sorting {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+#visualizer {
+  display: flex;
+  align-items: flex-end;
+  height: 300px;
+  margin: 2rem;
+  gap: 4px;
+}
+
+.bar {
+  display: inline-block;
+  background: linear-gradient(to top, #00c6ff, #0072ff);
+  margin-right: 2px;
+  width: 10px;
+  transition: height 0.3s ease, background 0.3s ease;
+  position: relative;
+}
+
+.bar.active {
+  background-color: orange;
+  animation: pulse 0.3s ease;
+
+}
+
+
+.bar.sorted {
+  background-color: limegreen;
+}
+
+body.dark .bar {
+  background: #ff6f61;
+}
+
+.bar:hover {
+  outline: 1px solid white;
+  cursor: pointer;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sort-buttons button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.sort-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sort-buttons button.active {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  box-shadow: 0 0 10px rgba(67, 233, 123, 0.5);
+}
+
+#sortBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(255, 106, 0, 0.6);
+  animation: fadeSlide 0.6s ease-out;
+}
+
+button {
+  background: #0072ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #4CAF50;
+
+}
+
+button:focus {
+  outline: 2px solid #005fcc;
+}
+
+.visualizer-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.bar::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: #333;
+  background: rgba(255,255,255,0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.bar:hover::after {
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .controls, .sort-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #visualizer {
+    height: 200px;
+    margin: 1rem;
+  }
+
+  .bar {
+    width: 6px;
+  }
+
+  #sortBadge {
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+   animation: fadeIn 0.4s ease-in-out
+  }
+}
+.sparkles {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#sortBadge.pulse {
+  animation: pulse 1.5s infinite;
+  background: #fffa;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.sort-buttons button svg {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+#visualizer .bar {
+  opacity: 0;
+  animation: fadeInBar 0.6s forwards;
+}
+
+@keyframes fadeInBar {
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(1.1); }
+  100% { transform: scaleY(1); }
+
+}
+
+@keyframes fadeIn {
+ from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

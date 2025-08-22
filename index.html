@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlgoViz – Sorting Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <header>
+    <button id="themeToggle" aria-label="Toggle Theme">
+      <svg id="themeIcon" width="24" height="24" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="currentColor" />
+      </svg>
+    </button>
+      <div class="sparkles">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="gold">
+      <path d="M12 2L13 8L18 9L13 10L12 16L11 10L6 9L11 8L12 2Z"/>
+    </svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="lightblue">
+      <circle cx="12" cy="12" r="4"/>
+    </svg>
+  </div>
+  </button>
+
+  </header>
+
+  <main role="main">
+    <h1>Sorting Visualizer
+   <svg width="60" height="30" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="10" width="6" height="20" fill="#4CAF50">
+    <animate attributeName="height" values="20;10;20" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="10;20;10" dur="1s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="15" y="5" width="6" height="25" fill="#4CAF50">
+    <animate attributeName="height" values="25;15;25" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="5;15;5" dur="1s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="25" y="15" width="6" height="15" fill="#4CAF50">
+    <animate attributeName="height" values="15;25;15" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="15;5;15" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>
+    </h1>
+
+    <section class="controls" role="region" aria-label="Sorting Controls">
+      <button id="generateArray">Generate Array</button>
+      <button id="startSort">Start Sorting</button>
+      <input type="range" id="speed" min="10" max="1000" value="100" />
+      <span id="speedValue">100ms</span>
+      <label for="turbo">Turbo Mode:</label>
+      <input type="checkbox" id="turbo" />
+      <button id="stopSort">Stop Sorting</button>
+      <button id="resetSort">Reset</button>
+      <span id="statusMessage"></span>
+      <span id="sortTimer"></span>
+    </section>
+
+    <section id="visualizer" role="region" aria-label="Array Visualizer"></section>
+
+<section class="sort-controls" role="region" aria-label="Algorithm Selector">
+  <div class="sort-buttons">
+    <button data-sort="bubble" title="O(n²) – Simple but slow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="12" r="6"/>
+      </svg>
+      Bubble
+    </button>
+    <button data-sort="selection" title="O(n²) – Good for small arrays">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="6" y="6" width="12" height="12"/>
+      </svg>
+      Selection
+    </button>
+    <button data-sort="insertion" title="O(n²) – Efficient for nearly sorted">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Insertion
+    </button>
+    <button data-sort="merge" title="O(n log n) – Fast and stable">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4 4h4v4H4V4zm12 12h4v4h-4v-4zM4 16h4v4H4v-4zm12-12h4v4h-4V4z" />
+      </svg>
+      Merge
+    </button>
+    <button data-sort="quick" title="O(n log n) – Fast but unstable">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Quick
+    </button>
+  </div>
+  <div id="sortBadge" class="pulse" aria-live="polite">Bubble Sort</div>
+</section>
+<div id="stepCounter">Steps: 0</div>
+
+  </main>
+
+  <footer>
+    <p>Tip: Press <strong>Enter</strong> to start sorting, <strong>Esc</strong> to stop.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
+</body>
+</html>
